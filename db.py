@@ -5,6 +5,7 @@ def create_db_and_table():
         host="mysql",  # Cambia esto si estás usando Docker (puede ser 'mysql')
         user="root",       # Cambia por tu usuario MySQL
         password="1234", # Cambia por tu contraseña MySQL
+        database='inventory' 
     )
     
     cursor = conn.cursor()
