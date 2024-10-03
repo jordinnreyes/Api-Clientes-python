@@ -4,10 +4,8 @@ info:
   description: API para gestionar registros de clientes.
   version: 1.0.0
 servers:
-  - url: http://localhost:8000
+  - url: http://localhost:5000
     description: Servidor de desarrollo
-
-
 paths:
   /clientes:
     get:
@@ -34,7 +32,7 @@ paths:
                       type: string
                     correo:
                       type: string
-     post:
+    post:
       summary: Crear un nuevo cliente
       requestBody:
         required: true
@@ -56,7 +54,7 @@ paths:
       responses:
         '201':
           description: Cliente creado correctamente
-/clientes/{id_cliente}:
+  /clientes/{id_cliente}:
     parameters:
       - in: path
         name: id_cliente
