@@ -1,8 +1,10 @@
 from flask import Flask, request,jsonify, render_template
 import  json
 import mysql.connector
+from flask_cors import CORS  # Importa CORS
 
 app = Flask(__name__)
+CORS(app)  # Permite CORS para todos los orígenes
 
 
 def get_db_connection():
@@ -10,7 +12,8 @@ def get_db_connection():
         host="mysql",  # Puede ser 'localhost' o la IP de tu servidor mysql
         user="root",
         password="1234",
-        database="inventory"
+        database="inventory",
+        port=3306
     )
     return conn
 
