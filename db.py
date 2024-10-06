@@ -6,10 +6,9 @@ def create_db_and_table():
     while True:
         try:
             conn = mysql.connector.connect(
-                host="mysql",  # Mantén 'mysql' ya que coincide con el nombre del servicio en docker-compose
+                host="mysql",  
                 user="root",
                 password="1234",
-                database='inventory'
             )
             if conn.is_connected():
                 print("Conectado a MySQL")
@@ -17,13 +16,17 @@ def create_db_and_table():
         except Error as e:
             print(f"Error al conectar con MySQL: {e}")
             print("Reintentando en 5 segundos...")
-            time.sleep(5)  # Esperar 5 segundos antes de volver a intentar
+            time.sleep(5)  
 
     cursor = conn.cursor()
-    
-    # Crear base de datos y tabla
+
+    # Crear base de datos
     cursor.execute("CREATE DATABASE IF NOT EXISTS inventory")
+    
+    # Seleccionar la base de datos creada
     conn.database = "inventory"
+    
+    # Crear tabla dentro de la base de datos
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS clientes (
             id_cliente INT AUTO_INCREMENT PRIMARY KEY,
@@ -34,5 +37,11 @@ def create_db_and_table():
             correo VARCHAR(100)
         )
     """)
+    
     conn.commit()
-    conn.close()
+    cursor.close()  # Cerrar cursor
+    conn.close()    # Cerrar conexión
+    print("Base de datos y tabla creadas correctamente")
+
+# Llama a la función
+create_db_and_table()
