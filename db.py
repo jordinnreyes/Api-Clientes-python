@@ -9,6 +9,7 @@ def create_db_and_table():
                 host="mysql",  
                 user="root",
                 password="1234",
+                port=3306
             )
             if conn.is_connected():
                 print("Conectado a MySQL")
